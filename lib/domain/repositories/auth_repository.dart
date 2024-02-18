@@ -2,7 +2,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../common/success/success.dart';
-import '../entities/user.dart';
+import '../models/user.dart';
 import '../../core/exception/app_exception.dart';
 
 abstract class IAuthRepository {

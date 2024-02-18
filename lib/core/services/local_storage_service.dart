@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../domain/entities/user.dart';
+import '../../domain/models/user.dart';
 
 enum _Key { user, apitoken, locale }
 
