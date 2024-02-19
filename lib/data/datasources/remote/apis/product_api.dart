@@ -17,12 +17,14 @@ enum RequestType {
 
 class ProductAPI implements IHTTPRequest {
   final RequestType type;
+  String? productId;
 
-  ProductAPI._({required this.type});
+  ProductAPI._({required this.type, this.productId});
 
   ProductAPI.getProductList() : this._(type: RequestType.GetProductList);
 
-  ProductAPI.getProductDetails() : this._(type: RequestType.GetProductDetails);
+  ProductAPI.getProductDetails({required String productId})
+      : this._(type: RequestType.GetProductDetails, productId: productId);
 
   @override
   String get endpoint => APIEndpoint.BASE_URL;
@@ -68,7 +70,7 @@ class ProductAPI implements IHTTPRequest {
         return {};
       case RequestType.GetProductDetails:
         return {
-          "id": "1",
+          "id": productId ?? "",
         };
       default:
         return {};

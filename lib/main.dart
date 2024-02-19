@@ -1,11 +1,16 @@
+import 'package:ecommerce_app/presentation/home/binding/home_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'core/routes/app_routes.dart';
+import 'core/services/local_storage_service.dart';
 import 'presentation/home/home_screen.dart';
 import 'presentation/product_details_screen.dart/product_details_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  Get.putAsync(() => LocalStorageService().init(), permanent: true)
+      .whenComplete(() => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,6 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'eCommerce App',
+      initialBinding: HomeBinding(),
+      initialRoute: AppRoutes.home,
+      getPages: AppRoutes.routes,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -35,7 +43,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      // home: HomeScreen(),
     );
   }
 }
